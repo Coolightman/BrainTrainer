@@ -102,27 +102,30 @@ class MainActivity : AppCompatActivity() {
 
     private fun setButtonsValues(numResult: Int) {
         val mixedButtons: List<Button> = getMixedButtons()
-        val button1 = mixedButtons[0]
-        val button2 = mixedButtons[1]
-        val button3 = mixedButtons[2]
-        val button4 = mixedButtons[3]
-
-        button1.text = taskResult
+        val button1 = numResult
+        var button2: Int
+        var button3: Int
+        var button4: Int
 
         do {
-            button2.text = getFalseAnswer(numResult)
-        } while (button2.text == button1.text)
+            button2 = getFalseAnswer(numResult)
+        } while (button2 == button1)
 
         do {
-            button3.text = getFalseAnswer(numResult)
-        } while (button3.text == button1.text || button3.text == button2.text)
+            button3 = getFalseAnswer(numResult)
+        } while (button3 == button1 || button3 == button2)
 
         do {
-            button4.text = getFalseAnswer(numResult)
-        } while (button4 == button1.text ||
-            button4.text == button2.text ||
-            button4.text == button3.text
+            button4 = getFalseAnswer(numResult)
+        } while (button4 == button1 ||
+            button4 == button2 ||
+            button4 == button3
         )
+
+        mixedButtons[0].text = button1.toString()
+        mixedButtons[1].text = button2.toString()
+        mixedButtons[2].text = button3.toString()
+        mixedButtons[3].text = button4.toString()
     }
 
     private fun getMixedButtons(): List<Button> {
@@ -139,8 +142,8 @@ class MainActivity : AppCompatActivity() {
         textViewScore.text = score
     }
 
-    private fun getFalseAnswer(taskResult: Int): String {
-        return (taskResult + getRandomFalse()).toString()
+    private fun getFalseAnswer(taskResult: Int): Int {
+        return (taskResult + getRandomFalse())
     }
 
     private fun getRandomFalse(): Int {
