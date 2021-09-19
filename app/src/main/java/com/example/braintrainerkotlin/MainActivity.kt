@@ -12,15 +12,15 @@ import androidx.appcompat.app.AppCompatDelegate
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    companion object {
+
         private var tasksAmountCounter: Int = 0
         private var tasksResolvedCounter: Int = 0
-        private const val min = -99
-        private const val max = 99
+        private val min = -99
+        private val max = 99
         private var taskResult: String = ""
-        private const val timeGameMillis = 60 * 1000L
-        private const val tasksDelayMillis = 500L
-    }
+        private val timeGameMillis = 60 * 1000L
+        private val tasksDelayMillis = 500L
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
