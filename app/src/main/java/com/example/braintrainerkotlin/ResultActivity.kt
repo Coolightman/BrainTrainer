@@ -24,7 +24,7 @@ class ResultActivity : AppCompatActivity() {
         }
 
         buttonAgain.setOnClickListener {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 }

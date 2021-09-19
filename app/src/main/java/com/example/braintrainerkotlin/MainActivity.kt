@@ -155,7 +155,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showResultsView() {
-        val intent = Intent(applicationContext, ResultActivity::class.java)
+        val intent = Intent(this, ResultActivity::class.java)
         intent.putExtra("result", tasksResolvedCounter)
         startActivity(intent)
     }
