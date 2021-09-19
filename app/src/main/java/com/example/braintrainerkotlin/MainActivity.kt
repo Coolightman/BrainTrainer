@@ -143,16 +143,12 @@ class MainActivity : AppCompatActivity() {
     private fun createTimer() {
         val timer = object : CountDownTimer(timeGameMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val timeLeft = (millisUntilFinished / 1000 + 1).toString()
+                val timeLeft = (millisUntilFinished / 1000).toString()
                 textViewTimer.text = timeLeft
             }
 
             override fun onFinish() {
-                textViewTimer.text = "0"
-                Toast.makeText(applicationContext, "Finish!", Toast.LENGTH_SHORT).show()
-                Handler(Looper.getMainLooper()).post {
-                    showResultsView()
-                }
+                showResultsView()
             }
         }
         timer.start()
