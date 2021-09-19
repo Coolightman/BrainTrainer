@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -155,8 +156,10 @@ class MainActivity : AppCompatActivity() {
     private fun createTimer() {
         val timer = object : CountDownTimer(timeGameMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val timeLeft = (millisUntilFinished / 1000).toString()
-                textViewTimer.text = timeLeft
+                if (millisUntilFinished < 10000) {
+                    textViewTimer.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+                }
+                textViewTimer.text = getTime(millisUntilFinished)
             }
 
             override fun onFinish() {
@@ -165,6 +168,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         timer.start()
+    }
+
+    private fun getTime(millis: Long): String {
+        val allSeconds = (millis / 1000).toInt()
+        val minutes = allSeconds / 60
+        val seconds = allSeconds % 60
+        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
     }
 
     private fun showResultsView() {
