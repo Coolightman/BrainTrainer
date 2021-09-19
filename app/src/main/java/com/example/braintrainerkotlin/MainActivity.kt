@@ -13,13 +13,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-        private var tasksAmountCounter: Int = 0
-        private var tasksResolvedCounter: Int = 0
-        private val min = -99
-        private val max = 99
-        private var taskResult: String = ""
-        private val timeGameMillis = 60 * 1000L
-        private val tasksDelayMillis = 500L
+    private var tasksAmountCounter: Int = 0
+    private var tasksResolvedCounter: Int = 0
+    private val min = -99
+    private val max = 99
+    private var taskResult: String = ""
+    private val timeGameMillis = 60 * 1000L
+    private val tasksDelayMillis = 800L
+    private var isGameOver = false
+    private var isAnswerChecking = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,23 +36,32 @@ class MainActivity : AppCompatActivity() {
 
     private fun listeners() {
         buttonAnswer1.setOnClickListener {
-            checkAnswer(buttonAnswer1.text.toString())
+            if (!isGameOver && !isAnswerChecking) {
+                checkAnswer(buttonAnswer1.text.toString())
+            }
         }
 
         buttonAnswer2.setOnClickListener {
-            checkAnswer(buttonAnswer2.text.toString())
+            if (!isGameOver && !isAnswerChecking) {
+                checkAnswer(buttonAnswer2.text.toString())
+            }
         }
 
         buttonAnswer3.setOnClickListener {
-            checkAnswer(buttonAnswer3.text.toString())
+            if (!isGameOver && !isAnswerChecking) {
+                checkAnswer(buttonAnswer3.text.toString())
+            }
         }
 
         buttonAnswer4.setOnClickListener {
-            checkAnswer(buttonAnswer4.text.toString())
+            if (!isGameOver && !isAnswerChecking) {
+                checkAnswer(buttonAnswer4.text.toString())
+            }
         }
     }
 
     private fun checkAnswer(answer: String) {
+        isAnswerChecking = true
         val toast =
             if (answer == taskResult) {
                 tasksResolvedCounter++
@@ -72,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             toast.cancel()
             createTask()
+            isAnswerChecking = false
         }, tasksDelayMillis)
     }
 
@@ -131,8 +143,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRandomFalse(): Int {
-        val minRand = -20
-        val maxRand = 20
+        val minRand = -10
+        val maxRand = 10
         return (Math.random() * (maxRand - minRand + 1) + minRand).toInt()
     }
 
@@ -149,6 +161,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 showResultsView()
+                isGameOver = true
             }
         }
         timer.start()
