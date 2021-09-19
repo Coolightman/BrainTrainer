@@ -11,16 +11,16 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
-
         val result = intent.getIntExtra("result", 0)
         textViewResult.text = String.format(getString(R.string.text_view_result_text), result)
+
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         val best = preferences.getInt("best", 0)
         textViewBest.text = String.format(getString(R.string.text_view_best_text), best)
 
-        if (result > best) {
-            preferences.edit().putInt("best", result).apply()
+        if (result >= best) {
             textViewBest.text = getString(R.string.text_view_best_congrat)
+            preferences.edit().putInt("best", result).apply()
         }
 
         buttonAgain.setOnClickListener {
