@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Brain Trainer</string>
+    <string name="text_view_over_text">Время завершилось!</string>
+    <string name="button_again_text">Еще раз</string>
+    <string name="toast_right">Правильно!</string>
+    <string name="toast_wrong">Неправильно!</string>
+    <string name="text_view_result_text">Ваш результат: %s</string>
+    <string name="text_view_best_text">Лучший результат: %s</string>
+    <string name="text_view_best_congrat">Поздравляем!\\nУ Вас лучший результат!</string>
+</resources>
