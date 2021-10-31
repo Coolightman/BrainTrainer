@@ -8,4 +8,6 @@
     <string name="text_view_result_text">Ваш результат: %s</string>
     <string name="text_view_best_text">Лучший результат: %s</string>
     <string name="text_view_best_congrat">Поздравляем!\nУ Вас лучший результат!</string>
+    <string name="text_view_rules">Правила игры:\nВаша задача складывать числа и указывать правильные ответы. У Вас есть 60 секунд. Сыграем?</string>
+    <string name="button_start_text">Начать</string>
 </resources>

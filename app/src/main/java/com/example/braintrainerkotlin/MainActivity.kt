@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import android.view.View.GONE
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,15 +25,16 @@ class MainActivity : AppCompatActivity() {
     private var isGameOver = false
     private var isAnswerChecking = false
 
+    private lateinit var timer: CountDownTimer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
-        createTimer()
-        createTask()
         listeners()
+        createTimer()
     }
 
     private fun listeners() {
@@ -58,6 +60,14 @@ class MainActivity : AppCompatActivity() {
             if (!isGameOver && !isAnswerChecking) {
                 checkAnswer(buttonAnswer4.text.toString())
             }
+        }
+
+        buttonStart.setOnClickListener {
+            viewShadow.visibility = GONE
+            textViewRules.visibility = GONE
+            buttonStart.visibility = GONE
+            createTask()
+            timer.start()
         }
     }
 
@@ -157,7 +167,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createTimer() {
-        val timer = object : CountDownTimer(timeGameMillis, 1000) {
+        timer = object : CountDownTimer(timeGameMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 if (millisUntilFinished < 10000) {
                     textViewTimer.setTextColor(resources.getColor(android.R.color.holo_red_dark))
@@ -170,7 +180,6 @@ class MainActivity : AppCompatActivity() {
                 isGameOver = true
             }
         }
-        timer.start()
     }
 
     private fun getTime(millis: Long): String {

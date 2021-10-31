@@ -7,4 +7,6 @@
     <string name="text_view_result_text">Your result: %s</string>
     <string name="text_view_best_text">Best result: %s</string>
     <string name="text_view_best_congrat">Congratulation!\nYou have best result!</string>
+    <string name="text_view_rules">Game rules:\nYour task is to add numbers and indicate the correct answers. You have 60 seconds. Let\'s play?</string>
+    <string name="button_start_text">Start</string>
 </resources>
